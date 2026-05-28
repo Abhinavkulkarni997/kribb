@@ -1,6 +1,7 @@
-import {useUserStore} from "@/store/UserStore";
+import {useUserStore} from "../store/userStore";
 import {useSupabase} from './useSupabase';
 import {useUser} from "@clerk/expo";
+import {useEffect} from "react";
 
 export const useUserSync=()=>{
     const {user}=useUser();
@@ -32,6 +33,6 @@ export const useUserSync=()=>{
         })
         .select("is_admin")
         .single();
-        setIsAdmin
+        setIsAdmin(newUser?.is_admin ?? false);
     }
 }
