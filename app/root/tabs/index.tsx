@@ -53,16 +53,35 @@ export default function HomeScreen(){
            ListHeaderComponent={
             <View>
                 {/* Header */}
-                <View className='flex-row items-center justify-between ps-5 pt-4 pb-5'>
+                <View className='flex-row items-center justify-between px-5 pt-4 pb-5'>
                     <Image 
                     source={require('../../../assets/images/kribb.png')}
                     style={{width:90,height:36}}
                     resizeMode="contain"
                     />
 
-                    <
+                    <View className="items-end">
+                        <Text>Good Morning</Text>
+                        <Text className="text-gray-900 text-base font-bold">
+                            {user?.firstName ?? "User"}
+                            </Text>
+
+                    </View>
 
                 </View>
+
+
+                {/* Search Bar */}
+                <TouchableOpacity onPress={()=>router.push("/(root)/(tabs)/search")}>
+                    <Ionicons name="search-outline" size={18} color="#9CA3AF"/>
+                    <Text className="text-gray-400 text-sm flex-1">
+                    Search properties, cities...
+                    </Text>
+                </TouchableOpacity>
+
+                {/* Featured Section */}
+
+
 
                 {/*Recommended Header */}
                 <Text className='text-gray-900 text-lg font-bold px-5 mb-4'>
