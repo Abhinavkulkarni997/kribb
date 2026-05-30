@@ -1,5 +1,5 @@
 import '../polyfills'
-
+// import 'react-native-url-polyfill/auto'
 
 
 import { ClerkProvider } from '@clerk/expo'

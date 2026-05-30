@@ -4,8 +4,12 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import { Property } from '@/types';
 import { supabase } from '@/lib/supabase';
 
-import { View,Text,FlatList} from 'react-native';
+import { View,Text,FlatList,TouchableOpacity,Image,ActivityIndicator} from 'react-native';
 import {SafeAreaView} from "react-native-safe-area-context";
+import {Ionicons} from '@expo/vector-icons';
+import {FeaturedCard} from '../../../components/FeaturedCard';
+
+
 export default function HomeScreen(){
 
     const {user}=useUser();
@@ -72,16 +76,51 @@ export default function HomeScreen(){
 
 
                 {/* Search Bar */}
-                <TouchableOpacity onPress={()=>router.push("/(root)/(tabs)/search")}>
+                <TouchableOpacity onPress={()=>router.push("/(root)/(tabs)/search")}
+                    className="mx-5 mb-6 flex-row items-center bg-white rounded-2xl px-4 py-3 gap-3"
+                    style={{
+                        shadowColor:'#000',
+                        shadowOffset:{width:0,height:1},
+                        shadowOpacity:0.06,
+                        shadowRadius:6,
+                        elevation:2
+                    }}
+                    >
                     <Ionicons name="search-outline" size={18} color="#9CA3AF"/>
                     <Text className="text-gray-400 text-sm flex-1">
                     Search properties, cities...
                     </Text>
+
+                    <TouchableOpacity onPress={()=>router.push("/(root)/(tabs)/search?openFilters=true")}
+                        className="w-8 h-8 bg-blue-600 rounded-xl items-center justify-center"
+                        >
+                        <Ionicons name="options-outline" size={15} color="white"/>
+                    </TouchableOpacity>
                 </TouchableOpacity>
 
                 {/* Featured Section */}
+                <View className="mb-6">
+                    <Text className="text-gray-900 text-lg font-bold px-5 mb-4">
+                        Featured
+                    </Text>
+                    {loading ? (
+                        <ActivityIndicator
+                        size="small"
+                        color="#2563EB"
+                        className="py-10"
+                        />
+                    ):(
+                        <FlatList
+                        data={featured}
+                        keyExtractor={item=>item.id}
+                        renderItem={({item})=><FeaturedCard Property={item}/>}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        contentContainerStyle={{paddingHorizontal:20}}
+                        />
+                    )}
 
-
+                </View>
 
                 {/*Recommended Header */}
                 <Text className='text-gray-900 text-lg font-bold px-5 mb-4'>
