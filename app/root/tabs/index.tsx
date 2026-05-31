@@ -8,6 +8,7 @@ import { View,Text,FlatList,TouchableOpacity,Image,ActivityIndicator} from 'reac
 import {SafeAreaView} from "react-native-safe-area-context";
 import {Ionicons} from '@expo/vector-icons';
 import {FeaturedCard} from '../../../components/FeaturedCard';
+import PropertyCard from '@/components/PropertyCard';
 
 
 export default function HomeScreen(){
@@ -130,7 +131,7 @@ export default function HomeScreen(){
         }
         renderItem={({item})=>(
             <View className='px-5'>
-                <Text>{item.title}</Text>
+                <PropertyCard property={item}/>
 
             </View>
         )}
