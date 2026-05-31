@@ -26,7 +26,7 @@ export default function PropertyCard({property,onUnsave,showSave=false}:{
     >
       <Image 
       source={{uri:property.images.length>0 
-        ? {uri:property.images[0]}
+        ? property.images[0]
         : require("@assets/images/kribb.png"),
        }}
       className="w-28 h-28"
