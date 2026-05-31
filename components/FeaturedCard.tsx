@@ -9,7 +9,8 @@ export default function FeaturedCard({property}:{property:Property}) {
     const router=useRouter();
 
   return (
-   <TouchableOpacity className="w-72 mr-2 rounded-3xl overflow-hidden bg-white"
+   <TouchableOpacity 
+   className="w-72 mr-2 rounded-3xl overflow-hidden bg-white"
    style={{shadowColor:"#000",
     shadowOffset:{width:0,height:2},
     shadowOpacity:0.08,
@@ -20,8 +21,12 @@ export default function FeaturedCard({property}:{property:Property}) {
 onPress={()=>router.push(`/(root)/property/${property.id}`)}
    
    >
-    <Image source={{uri:property.images[0]}}
-    
+    <Image
+     source={
+        property.images.length>0 
+        ? {uri:property.images[0]}
+        : require("@assets/images/kribb.png")
+    }
     className="w-full h-44"
     resizeMode="cover"
     />
