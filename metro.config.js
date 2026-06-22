@@ -34,4 +34,4 @@ config.transformer.minifierConfig = {
 // Export with NativeWind
 module.exports = withNativeWind(config, {
   input: './global.css',
-});
+}); 

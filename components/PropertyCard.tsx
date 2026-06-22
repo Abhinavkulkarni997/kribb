@@ -2,7 +2,7 @@ import { View, Text, Touchable, TouchableOpacity,Image } from 'react-native'
 import React from 'react'
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { formatPrice } from '@/lib/utils';
+import { formatPrice } from '../lib/utils';
 
 export default function PropertyCard({property,onUnsave,showSave=false}:{
   property: Property;
@@ -27,7 +27,7 @@ export default function PropertyCard({property,onUnsave,showSave=false}:{
       <Image 
       source={{uri:property.images.length>0 
         ? property.images[0]
-        : require("@assets/images/kribb.png"),
+        : require("../assets/images/kribb.png"),
        }}
       className="w-28 h-28"
       resizeMode="cover"

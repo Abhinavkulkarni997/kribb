@@ -17,8 +17,7 @@ interface FilterState{
     resetFilters:()=>void;
 }
 
-export const useFilterStore=create<FilterState>
-</FilterState>((set)=>({
+export const useFilterStore=create<FilterState>((set)=>({
     search:"",
     type:null,
     bedrooms:null,
