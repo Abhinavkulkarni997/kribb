@@ -1,8 +1,14 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text,TextInput, Touchable, TouchableOpacity } from 'react-native'
+import React, { useEffect } from 'react'
 import {SafeAreaView} from  'react-native-safe-area-context';
+<<<<<<< HEAD
 import {useFilterStore} from '../../../store/filterStore';
 import {Property} from "@types";
+=======
+import {useFilterStore} from "../../../store/filterStore";
+import {Property} from "../../../types";
+import { useLocalSearchParams } from 'expo-router';
+>>>>>>> origin/master
 
 
 export default function search() {
@@ -10,7 +16,13 @@ export default function search() {
   const [loading,setLoading]=useState(false);
   const [showFilter,setShowFilters]=useState(false);
 
+  const {openFilters}=useLocalSearchParams<{openFilters?:string}>();
 
+  useEffect(()=>{
+    if(openFilters==="true"){
+      setShowFilters(true);
+    }
+  },[openFilters]);
   const {
     search,
     type,
@@ -39,6 +51,21 @@ export default function search() {
           elevation:2,
         }}
         >
+          {search.length >0 && (
+            <TouchableOpacity onPress={()=>setSearch("")}
+            className="p-2 rounded-full bg-gray-100 items-center justify-center">
+            <Ionicons name="close-outline" size={18} color="#9CA3AF"/>
+            </TouchableOpacity>
+          )}
+        
+          <TextInput
+          className="flex-1 text-gray-900 py-3"
+          placeholder="Search by title or city..."
+          placeholderTextColor="#9CA3AF"
+          value={search}
+          onChangeText={setSearch}
+          autoCapitalize="none"
+          />
         </View>
     </View>
     </View>
